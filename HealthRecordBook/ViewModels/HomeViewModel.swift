@@ -8,15 +8,6 @@
 import Foundation
 import FirebaseAuth
 
-struct AuthDataResultModel {
-    let uid: String
-    let email: String?
-    
-    init(user: User) {
-        self.uid = user.uid
-        self.email = user.email
-    }
-}
 
 class HomeViewModel: ObservableObject {
     @Published var isLogged = false
@@ -24,7 +15,7 @@ class HomeViewModel: ObservableObject {
     func register(email: String, password: String) async throws {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
         let result = AuthDataResultModel(user: authDataResult.user)
-        print(result)
+        try await UserManager.shared.createNewUser(auth: result)
     }
     
     func login(email: String, password: String) {
@@ -48,24 +39,4 @@ class HomeViewModel: ObservableObject {
             print("Error: \(error.localizedDescription)")
         }
     }
-    
-//    func login(email: String, password: String) {
-//        print("Login")
-//        self.isLogged = true
-////        if let _ = users.first(where: { $0.email == email && $0.password == password }) {
-////            self.isLogged = true
-////        }
-//    }
-//
-//    func logout() {
-//        print("Login")
-//        self.isLogged = false
-//    }
-//
-//    func getAuthenticatedUser() throws -> AuthDataResultModel {
-//        guard let user = Auth.auth().currentUser else {
-//            throw URLError(.badServerResponse)
-//        }
-//        return AuthDataResultModel(user: user)
-//    }
 }

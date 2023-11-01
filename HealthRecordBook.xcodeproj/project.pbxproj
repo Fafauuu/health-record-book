@@ -21,6 +21,12 @@
 		D240251D2AF268A100C63E4B /* HomeScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240251C2AF268A100C63E4B /* HomeScreenButton.swift */; };
 		D24025202AF268E600C63E4B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240251F2AF268E600C63E4B /* HomeViewModel.swift */; };
 		D24025222AF2694700C63E4B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025212AF2694700C63E4B /* TestView.swift */; };
+		D24025252AF2B51700C63E4B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D24025242AF2B51700C63E4B /* FirebaseFirestoreSwift */; };
+		D24025282AF2B73C00C63E4B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025272AF2B73C00C63E4B /* UserProfileView.swift */; };
+		D240252A2AF2B75600C63E4B /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025292AF2B75600C63E4B /* UserProfileViewModel.swift */; };
+		D240252D2AF2B94A00C63E4B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240252C2AF2B94A00C63E4B /* AuthenticationManager.swift */; };
+		D240252F2AF2B97100C63E4B /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */; };
+		D24025312AF2C01100C63E4B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025302AF2C01100C63E4B /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +43,11 @@
 		D240251C2AF268A100C63E4B /* HomeScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenButton.swift; sourceTree = "<group>"; };
 		D240251F2AF268E600C63E4B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D24025212AF2694700C63E4B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		D24025272AF2B73C00C63E4B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		D24025292AF2B75600C63E4B /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		D240252C2AF2B94A00C63E4B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
+		D24025302AF2C01100C63E4B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +57,7 @@
 			files = (
 				D240250D2AF25A8900C63E4B /* FirebaseAuth in Frameworks */,
 				D240250F2AF25A8900C63E4B /* FirebaseFirestore in Frameworks */,
+				D24025252AF2B51700C63E4B /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +69,7 @@
 			children = (
 				D24024FA2AF256F200C63E4B /* HealthRecordBook */,
 				D24024F92AF256F200C63E4B /* Products */,
+				D24025232AF2B51700C63E4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +84,7 @@
 		D24024FA2AF256F200C63E4B /* HealthRecordBook */ = {
 			isa = PBXGroup;
 			children = (
+				D240252B2AF2B92E00C63E4B /* Helpers */,
 				D240251E2AF268D300C63E4B /* ViewModels */,
 				D24025122AF2665100C63E4B /* Models */,
 				D24025112AF2664800C63E4B /* Views */,
@@ -94,6 +108,7 @@
 		D24025112AF2664800C63E4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D24025262AF2B72800C63E4B /* User */,
 				D24025132AF2669800C63E4B /* Home */,
 			);
 			path = Views;
@@ -103,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				D240251A2AF266D700C63E4B /* User.swift */,
+				D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,8 +139,33 @@
 			isa = PBXGroup;
 			children = (
 				D240251F2AF268E600C63E4B /* HomeViewModel.swift */,
+				D24025292AF2B75600C63E4B /* UserProfileViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D24025232AF2B51700C63E4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D24025262AF2B72800C63E4B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				D24025272AF2B73C00C63E4B /* UserProfileView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		D240252B2AF2B92E00C63E4B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D240252C2AF2B94A00C63E4B /* AuthenticationManager.swift */,
+				D24025302AF2C01100C63E4B /* UserManager.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +187,7 @@
 			packageProductDependencies = (
 				D240250C2AF25A8900C63E4B /* FirebaseAuth */,
 				D240250E2AF25A8900C63E4B /* FirebaseFirestore */,
+				D24025242AF2B51700C63E4B /* FirebaseFirestoreSwift */,
 			);
 			productName = HealthRecordBook;
 			productReference = D24024F82AF256F200C63E4B /* HealthRecordBook.app */;
@@ -207,11 +249,16 @@
 			files = (
 				D24025152AF266A400C63E4B /* HomeView.swift in Sources */,
 				D24024FE2AF256F200C63E4B /* ContentView.swift in Sources */,
+				D24025312AF2C01100C63E4B /* UserManager.swift in Sources */,
 				D240251B2AF266D700C63E4B /* User.swift in Sources */,
+				D240252F2AF2B97100C63E4B /* AuthDataResultModel.swift in Sources */,
 				D24025202AF268E600C63E4B /* HomeViewModel.swift in Sources */,
 				D24025172AF266B300C63E4B /* LoginView.swift in Sources */,
+				D240252A2AF2B75600C63E4B /* UserProfileViewModel.swift in Sources */,
+				D24025282AF2B73C00C63E4B /* UserProfileView.swift in Sources */,
 				D240251D2AF268A100C63E4B /* HomeScreenButton.swift in Sources */,
 				D24025222AF2694700C63E4B /* TestView.swift in Sources */,
+				D240252D2AF2B94A00C63E4B /* AuthenticationManager.swift in Sources */,
 				D24024FC2AF256F200C63E4B /* HealthRecordBookApp.swift in Sources */,
 				D24025192AF266BD00C63E4B /* RegistrationView.swift in Sources */,
 			);
@@ -434,6 +481,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D240250B2AF25A8900C63E4B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		D24025242AF2B51700C63E4B /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D240250B2AF25A8900C63E4B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
