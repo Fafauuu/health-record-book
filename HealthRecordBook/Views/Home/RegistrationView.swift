@@ -22,14 +22,22 @@ struct RegistrationView: View {
                     TextField("Email", text: $email)
                     SecureField("Hasło", text: $password)
                     SecureField("Powtórz hasło", text: $confirmPassword)
-                    TextField("Imię", text: $name)
+//                    TextField("Imię", text: $name)
                 }
                 Button("Zarejestruj") {
                     if password == confirmPassword {
-                        homeViewModel.register(email: email, password: password)
-                        presentationMode.wrappedValue.dismiss()
+                        Task {
+                            do {
+                                try await homeViewModel.register(email: email, password: password)
+                                print("Success")
+                                presentationMode.wrappedValue.dismiss()
+                            } catch {
+                                print("Error: \(error)")
+                            }
+                        }
                     }
                 }
+
             }
             .navigationBarTitle("Rejestracja", displayMode: .inline)
             .navigationBarItems(leading: Button("Zamknij") { presentationMode.wrappedValue.dismiss() })

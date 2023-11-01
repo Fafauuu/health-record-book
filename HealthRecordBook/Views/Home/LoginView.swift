@@ -24,14 +24,16 @@ struct LoginView: View {
                 }
                 Button("Zaloguj") {
                     homeViewModel.login(email: email, password: password)
-                    if homeViewModel.isLogged {
-                        presentationMode.wrappedValue.dismiss()
-                    }
                 }
                 .accessibility(identifier: "loginButton")
             }
             .navigationBarTitle("Logowanie", displayMode: .inline)
             .navigationBarItems(leading: Button("Zamknij") { presentationMode.wrappedValue.dismiss() })
+            .onChange(of: homeViewModel.isLogged) { isLogged in
+                if isLogged {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
         }
     }
 }
