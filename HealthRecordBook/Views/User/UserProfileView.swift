@@ -14,17 +14,17 @@ struct UserProfileView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 if let user = viewModel.user {
-                    Text("User id: \(user.uid)")
+                    Text("User id: \(user.userId)")
                         .font(.system(size: 26, weight: .semibold))
-                        .padding(.horizontal, 40)
+                        .padding(.horizontal, 40);
+                    
+                    if let dateCreated = user.dateCreated {
+                        Text("Data utworzenia: \(dateCreated)")
+                            .font(.title2)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 5)
+                    }
                 }
-
-                
-//                Text("Lokalizacja: \(training.location)")
-//                    .font(.title2)
-//                    .padding(.horizontal, 40)
-//                    .padding(.vertical, 5)
-//
 //                Text("Opis: \(training.description)")
 //                    .font(.title2)
 //                    .padding(.horizontal, 40)
@@ -33,7 +33,7 @@ struct UserProfileView: View {
                 Spacer()
             }
         }
-        .onAppear{try? viewModel.loadCurrentUser()}
+        .task {try? await viewModel.loadCurrentUser()}
     }
 }
 

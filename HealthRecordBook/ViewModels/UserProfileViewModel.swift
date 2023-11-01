@@ -9,9 +9,16 @@ import Foundation
 
 
 class UserProfileViewModel: ObservableObject {
-    @Published var user: AuthDataResultModel? = nil
+    @Published var user: UserDTO? = nil
     
-    func loadCurrentUser() throws {
-        self.user = try AuthenticationManager.shared.getAuthenticatedUser()
+    func loadCurrentUser() async throws {
+        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
+        let fetchedUser = try await UserManager.shared.getUser(userId: authDataResult.uid)
+        
+        DispatchQueue.main.async {
+            print(fetchedUser)
+            self.user = fetchedUser
+        }
     }
 }
+

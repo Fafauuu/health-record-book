@@ -17,7 +17,7 @@
 		D24025152AF266A400C63E4B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025142AF266A400C63E4B /* HomeView.swift */; };
 		D24025172AF266B300C63E4B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025162AF266B300C63E4B /* LoginView.swift */; };
 		D24025192AF266BD00C63E4B /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025182AF266BD00C63E4B /* RegistrationView.swift */; };
-		D240251B2AF266D700C63E4B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240251A2AF266D700C63E4B /* User.swift */; };
+		D240251B2AF266D700C63E4B /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240251A2AF266D700C63E4B /* UserDTO.swift */; };
 		D240251D2AF268A100C63E4B /* HomeScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240251C2AF268A100C63E4B /* HomeScreenButton.swift */; };
 		D24025202AF268E600C63E4B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240251F2AF268E600C63E4B /* HomeViewModel.swift */; };
 		D24025222AF2694700C63E4B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025212AF2694700C63E4B /* TestView.swift */; };
@@ -39,7 +39,7 @@
 		D24025142AF266A400C63E4B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D24025162AF266B300C63E4B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D24025182AF266BD00C63E4B /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
-		D240251A2AF266D700C63E4B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D240251A2AF266D700C63E4B /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
 		D240251C2AF268A100C63E4B /* HomeScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenButton.swift; sourceTree = "<group>"; };
 		D240251F2AF268E600C63E4B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D24025212AF2694700C63E4B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		D24025122AF2665100C63E4B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D240251A2AF266D700C63E4B /* User.swift */,
+				D240251A2AF266D700C63E4B /* UserDTO.swift */,
 				D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */,
 			);
 			path = Models;
@@ -250,7 +250,7 @@
 				D24025152AF266A400C63E4B /* HomeView.swift in Sources */,
 				D24024FE2AF256F200C63E4B /* ContentView.swift in Sources */,
 				D24025312AF2C01100C63E4B /* UserManager.swift in Sources */,
-				D240251B2AF266D700C63E4B /* User.swift in Sources */,
+				D240251B2AF266D700C63E4B /* UserDTO.swift in Sources */,
 				D240252F2AF2B97100C63E4B /* AuthDataResultModel.swift in Sources */,
 				D24025202AF268E600C63E4B /* HomeViewModel.swift in Sources */,
 				D24025172AF266B300C63E4B /* LoginView.swift in Sources */,
