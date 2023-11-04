@@ -54,7 +54,6 @@ struct UserProfileView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .padding(.horizontal)
-                    // Dodanie nawigacji do widoku edycji
                     .sheet(isPresented: $isEditViewPresented, onDismiss: loadUserData) {
                         UserEditView(userId: user.id)
                     }

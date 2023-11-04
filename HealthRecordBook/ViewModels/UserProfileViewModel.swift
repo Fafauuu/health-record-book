@@ -12,8 +12,8 @@ class UserProfileViewModel: ObservableObject {
     @Published var user: UserDTO? = nil
     
     func loadCurrentUser() async throws {
-        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-        let fetchedUser = try await UserManager.shared.getUser(userId: authDataResult.uid)
+        guard let userId = SessionManager.shared.getUserId() else { return }
+        let fetchedUser = try await UserService.shared.getUser(userId: userId)
         
         DispatchQueue.main.async {
             print(fetchedUser)
@@ -21,4 +21,3 @@ class UserProfileViewModel: ObservableObject {
         }
     }
 }
-

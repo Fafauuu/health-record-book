@@ -8,8 +8,8 @@
 import Foundation
 import Firebase
 
-final class AuthenticationManager {
-    static let shared = AuthenticationManager()
+final class AuthenticationService {
+    static let shared = AuthenticationService()
     
     private init() {}
     

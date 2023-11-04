@@ -30,7 +30,7 @@ struct HomeView: View {
                     
                     LazyVGrid(columns: columns, spacing: 20) {
                         HomeScreenButton(destination: UserProfileView(), text: "Mój profil", showLoginView: $showLoginView, homeViewModel: homeViewModel)
-                        HomeScreenButton(destination: TestView(), text: "Wyniki badań", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        HomeScreenButton(destination: MedicalExamListView(), text: "Wyniki badań", showLoginView: $showLoginView, homeViewModel: homeViewModel)
                         HomeScreenButton(destination: TestView(), text: "Nadchodzące wizyty", showLoginView: $showLoginView, homeViewModel: homeViewModel)
                         HomeScreenButton(destination: TestView(), text: "Szczepienia", showLoginView: $showLoginView, homeViewModel: homeViewModel)
                         HomeScreenButton(destination: TestView(), text: "Zalecenia lekarskie", showLoginView: $showLoginView, homeViewModel: homeViewModel)

@@ -15,7 +15,7 @@ class HomeViewModel: ObservableObject {
     func register(email: String, password: String) async throws {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
         let result = AuthDataResultModel(user: authDataResult.user)
-        try await UserManager.shared.createNewUser(auth: result)
+        try await UserService.shared.createNewUser(auth: result)
     }
     
     func login(email: String, password: String) {
@@ -23,7 +23,8 @@ class HomeViewModel: ObservableObject {
             guard let self = self else { return }
             if let error = error {
                 print("Error: \(error.localizedDescription)")
-            } else {
+            } else if let userId = authResult?.user.uid {
+                SessionManager.shared.setUserId(userId)
                 self.isLogged = true
                 print("Login successful!")
             }
@@ -33,6 +34,7 @@ class HomeViewModel: ObservableObject {
     func logout() {
         do {
             try Auth.auth().signOut()
+            SessionManager.shared.clearUserId()
             self.isLogged = false
             print("Logout successful!")
         } catch {

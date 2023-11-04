@@ -22,7 +22,6 @@ struct RegistrationView: View {
                     TextField("Email", text: $email)
                     SecureField("Hasło", text: $password)
                     SecureField("Powtórz hasło", text: $confirmPassword)
-//                    TextField("Imię", text: $name)
                 }
                 Button("Zarejestruj") {
                     if password == confirmPassword {
@@ -37,7 +36,6 @@ struct RegistrationView: View {
                         }
                     }
                 }
-
             }
             .navigationBarTitle("Rejestracja", displayMode: .inline)
             .navigationBarItems(leading: Button("Zamknij") { presentationMode.wrappedValue.dismiss() })

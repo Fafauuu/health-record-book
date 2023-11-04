@@ -82,7 +82,6 @@ struct UserEditView: View {
                 presentationMode.wrappedValue.dismiss()
             })
             .onAppear {
-                // Ładowanie danych użytkownika przy otwarciu widoku
                 loadUserData()
             }
         }
@@ -113,7 +112,7 @@ struct UserEditView: View {
     private func loadUserData() {
         Task {
             do {
-                let userDTO = try await UserManager.shared.getUser(userId: userId)
+                let userDTO = try await UserService.shared.getUser(userId: userId)
                 DispatchQueue.main.async {
                     self.firstName = userDTO.firstName
                     self.lastName = userDTO.lastName
@@ -148,7 +147,7 @@ struct UserEditView: View {
 
         Task {
             do {
-                try await UserManager.shared.updateUser(user: updatedUser)
+                try await UserService.shared.updateUser(user: updatedUser)
             } catch {
                 print("Wystąpił błąd podczas aktualizacji danych użytkownika: \(error)")
             }

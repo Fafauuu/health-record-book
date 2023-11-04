@@ -9,8 +9,8 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class UserManager {
-    static let shared = UserManager()
+final class UserService {
+    static let shared = UserService()
     
     private init() {}
     
@@ -63,10 +63,8 @@ final class UserManager {
     func updateUser(user: UserDTO) async throws {
         let documentRef = Firestore.firestore().collection("users").document(user.id)
         
-        // Konwersja daty urodzenia na Timestamp
         let dateOfBirthTimestamp = Timestamp(date: user.dateOfBirth)
 
-        // Słownik z danymi do aktualizacji
         let userData: [String: Any] = [
             "firstName": user.firstName,
             "lastName": user.lastName,
@@ -78,7 +76,6 @@ final class UserManager {
             "chronicDiseases": user.chronicDiseases ?? []
         ]
         
-        // Aktualizacja dokumentu
         try await documentRef.setData(userData, merge: true)
     }
 }

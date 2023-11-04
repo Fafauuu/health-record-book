@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MedicalExam {
+struct MedicalExam: Codable, Identifiable {
     var id: String
     var patientID: String
     var date: Date
