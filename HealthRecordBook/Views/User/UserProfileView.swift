@@ -55,7 +55,7 @@ struct UserProfileView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
                     // Dodanie nawigacji do widoku edycji
-                    .sheet(isPresented: $isEditViewPresented) {
+                    .sheet(isPresented: $isEditViewPresented, onDismiss: loadUserData) {
                         UserEditView(userId: user.id)
                     }
                 } else {
@@ -71,6 +71,16 @@ struct UserProfileView: View {
                 try await viewModel.loadCurrentUser()
             } catch {
                 print(error)
+            }
+        }
+    }
+    
+    private func loadUserData() {
+        Task {
+            do {
+                try await viewModel.loadCurrentUser()
+            } catch {
+                print("Error loading user data: \(error)")
             }
         }
     }

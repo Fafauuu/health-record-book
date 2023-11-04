@@ -59,4 +59,26 @@ final class UserManager {
             chronicDiseases: chronicDiseases
         )
     }
+    
+    func updateUser(user: UserDTO) async throws {
+        let documentRef = Firestore.firestore().collection("users").document(user.id)
+        
+        // Konwersja daty urodzenia na Timestamp
+        let dateOfBirthTimestamp = Timestamp(date: user.dateOfBirth)
+
+        // Słownik z danymi do aktualizacji
+        let userData: [String: Any] = [
+            "firstName": user.firstName,
+            "lastName": user.lastName,
+            "dateOfBirth": dateOfBirthTimestamp,
+            "height": user.height,
+            "weight": user.weight,
+            "bloodType": user.bloodType,
+            "allergies": user.allergies ?? [],
+            "chronicDiseases": user.chronicDiseases ?? []
+        ]
+        
+        // Aktualizacja dokumentu
+        try await documentRef.setData(userData, merge: true)
+    }
 }

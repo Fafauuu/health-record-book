@@ -79,11 +79,32 @@ struct UserEditView: View {
     }
     
     private func saveChanges() {
-//         Logika zapisu zmian w profilu użytkownika
-//         Może to być wywołanie funkcji aktualizującej dokument w Firestore
-//         Przykład:
-//         UserManager.shared.updateUser(with: userDTO)
-    }
+            let updatedHeight = Double(height) ?? 0
+            let updatedWeight = Double(weight) ?? 0
+            let updatedAllergies = allergies.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
+            let updatedChronicDiseases = chronicDiseases.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
+            
+            let updatedUser = UserDTO(
+                id: userId,
+                firstName: firstName,
+                lastName: lastName,
+                dateOfBirth: dateOfBirth,
+                height: updatedHeight,
+                weight: updatedWeight,
+                bloodType: bloodType,
+                allergies: updatedAllergies.isEmpty ? nil : updatedAllergies,
+                chronicDiseases: updatedChronicDiseases.isEmpty ? nil : updatedChronicDiseases
+            )
+
+            // Logika zapisu zmian w profilu użytkownika
+            Task {
+                do {
+                    try await UserManager.shared.updateUser(user: updatedUser)
+                } catch {
+                    print("Wystąpił błąd podczas aktualizacji danych użytkownika: \(error)")
+                }
+            }
+        }
 }
 
 struct UserEditView_Previews: PreviewProvider {
