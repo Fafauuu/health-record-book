@@ -34,6 +34,7 @@ struct HomeView: View {
                         HomeScreenButton(destination: TestView(), text: "Nadchodzące wizyty", showLoginView: $showLoginView, homeViewModel: homeViewModel)
                         HomeScreenButton(destination: TestView(), text: "Szczepienia", showLoginView: $showLoginView, homeViewModel: homeViewModel)
                         HomeScreenButton(destination: TestView(), text: "Zalecenia lekarskie", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        HomeScreenButton(destination: TestView(), text: "Notatki", showLoginView: $showLoginView, homeViewModel: homeViewModel)
                         
                     }
                     .padding(40)

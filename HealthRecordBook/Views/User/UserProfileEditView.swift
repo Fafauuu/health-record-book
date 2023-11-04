@@ -17,8 +17,8 @@ struct UserEditView: View {
     @State private var height: String = ""
     @State private var weight: String = ""
     @State private var bloodType: String = ""
-    @State private var allergies: String = ""
-    @State private var chronicDiseases: String = ""
+    @State private var allergiesList: [String] = []
+    @State private var chronicDiseasesList: [String] = []
     
     private var isFormValid: Bool {
         !(firstName.isEmpty || lastName.isEmpty || height.isEmpty || weight.isEmpty || bloodType.isEmpty)
@@ -33,14 +33,42 @@ struct UserEditView: View {
                     DatePicker("Data urodzenia", selection: $dateOfBirth, displayedComponents: .date)
                 }
                 
-                Section(header: Text("Dane medyczne")) {
+                Section(header: Text("Dane medyczne").font(.headline)) {
                     TextField("Wzrost (cm)", text: $height)
                         .keyboardType(.decimalPad)
                     TextField("Waga (kg)", text: $weight)
                         .keyboardType(.decimalPad)
                     TextField("Grupa krwi", text: $bloodType)
-                    TextField("Alergie", text: $allergies)
-                    TextField("Choroby przewlekłe", text: $chronicDiseases)
+                    
+                    GroupBox(label: Text("Alergie").fontWeight(.bold)) {
+                        VStack(spacing: 10) {
+                            ForEach(allergiesList.indices, id: \.self) { index in
+                                TextField("Alergia", text: $allergiesList[index])
+                            }
+                            .onDelete(perform: deleteAllergy)
+
+                            Button(action: addAllergy) {
+                                Text("Dodaj alergię")
+                            }
+                        }
+                        .padding(.top)
+                    }
+                    .groupBoxStyle(DefaultGroupBoxStyle())
+                    
+                    GroupBox(label: Text("Choroby przewlekłe").fontWeight(.bold)) {
+                        VStack(spacing: 10) {
+                            ForEach(chronicDiseasesList.indices, id: \.self) { index in
+                                TextField("Choroba przewlekła", text: $chronicDiseasesList[index])
+                            }
+                            .onDelete(perform: deleteChronicDisease)
+
+                            Button(action: addChronicDisease) {
+                                Text("Dodaj chorobę przewlekłą")
+                            }
+                        }
+                        .padding(.top)
+                    }
+                    .groupBoxStyle(DefaultGroupBoxStyle())
                 }
                 
                 Button("Zapisz zmiany") {
@@ -60,51 +88,72 @@ struct UserEditView: View {
         }
     }
     
+    private func addAllergy() {
+        if let last = allergiesList.last, last.isEmpty {
+            return
+        }
+        allergiesList.append("")
+    }
+
+    private func deleteAllergy(at offsets: IndexSet) {
+        allergiesList.remove(atOffsets: offsets)
+    }
+
+    private func addChronicDisease() {
+        if let last = chronicDiseasesList.last, last.isEmpty {
+            return
+        }
+        chronicDiseasesList.append("")
+    }
+
+    private func deleteChronicDisease(at offsets: IndexSet) {
+        chronicDiseasesList.remove(atOffsets: offsets)
+    }
+    
     private func loadUserData() {
         Task {
             do {
                 let userDTO = try await UserManager.shared.getUser(userId: userId)
-                firstName = userDTO.firstName
-                lastName = userDTO.lastName
-                dateOfBirth = userDTO.dateOfBirth
-                height = String(format: "%.2f", userDTO.height)
-                weight = String(format: "%.2f", userDTO.weight)
-                bloodType = userDTO.bloodType
-                allergies = userDTO.allergies?.joined(separator: ", ") ?? ""
-                chronicDiseases = userDTO.chronicDiseases?.joined(separator: ", ") ?? ""
+                DispatchQueue.main.async {
+                    self.firstName = userDTO.firstName
+                    self.lastName = userDTO.lastName
+                    self.dateOfBirth = userDTO.dateOfBirth
+                    self.height = String(format: "%.2f", userDTO.height)
+                    self.weight = String(format: "%.2f", userDTO.weight)
+                    self.bloodType = userDTO.bloodType
+                    self.allergiesList = userDTO.allergies ?? []
+                    self.chronicDiseasesList = userDTO.chronicDiseases ?? []
+                }
             } catch {
                 print("Error loading user data: \(error)")
             }
         }
     }
-    
-    private func saveChanges() {
-            let updatedHeight = Double(height) ?? 0
-            let updatedWeight = Double(weight) ?? 0
-            let updatedAllergies = allergies.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            let updatedChronicDiseases = chronicDiseases.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            
-            let updatedUser = UserDTO(
-                id: userId,
-                firstName: firstName,
-                lastName: lastName,
-                dateOfBirth: dateOfBirth,
-                height: updatedHeight,
-                weight: updatedWeight,
-                bloodType: bloodType,
-                allergies: updatedAllergies.isEmpty ? nil : updatedAllergies,
-                chronicDiseases: updatedChronicDiseases.isEmpty ? nil : updatedChronicDiseases
-            )
 
-            // Logika zapisu zmian w profilu użytkownika
-            Task {
-                do {
-                    try await UserManager.shared.updateUser(user: updatedUser)
-                } catch {
-                    print("Wystąpił błąd podczas aktualizacji danych użytkownika: \(error)")
-                }
+    private func saveChanges() {
+        let updatedAllergies = allergiesList.filter { !$0.isEmpty }
+        let updatedChronicDiseases = chronicDiseasesList.filter { !$0.isEmpty }
+        
+        let updatedUser = UserDTO(
+            id: userId,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            height: Double(height) ?? 0,
+            weight: Double(weight) ?? 0,
+            bloodType: bloodType,
+            allergies: updatedAllergies,
+            chronicDiseases: updatedChronicDiseases
+        )
+
+        Task {
+            do {
+                try await UserManager.shared.updateUser(user: updatedUser)
+            } catch {
+                print("Wystąpił błąd podczas aktualizacji danych użytkownika: \(error)")
             }
         }
+    }
 }
 
 struct UserEditView_Previews: PreviewProvider {
