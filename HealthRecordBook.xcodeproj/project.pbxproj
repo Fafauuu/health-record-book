@@ -27,6 +27,12 @@
 		D240252D2AF2B94A00C63E4B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240252C2AF2B94A00C63E4B /* AuthenticationManager.swift */; };
 		D240252F2AF2B97100C63E4B /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */; };
 		D24025312AF2C01100C63E4B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025302AF2C01100C63E4B /* UserManager.swift */; };
+		D24025352AF452B200C63E4B /* MedicalVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025342AF452B200C63E4B /* MedicalVisit.swift */; };
+		D24025372AF452E500C63E4B /* MedicalExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025362AF452E500C63E4B /* MedicalExam.swift */; };
+		D24025392AF452F900C63E4B /* Vaccination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025382AF452F900C63E4B /* Vaccination.swift */; };
+		D240253B2AF4531900C63E4B /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240253A2AF4531900C63E4B /* Appointment.swift */; };
+		D240253D2AF4533000C63E4B /* MedicalNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240253C2AF4533000C63E4B /* MedicalNote.swift */; };
+		D24025412AF65B3D00C63E4B /* UserProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025402AF65B3D00C63E4B /* UserProfileEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +54,12 @@
 		D240252C2AF2B94A00C63E4B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
 		D24025302AF2C01100C63E4B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		D24025342AF452B200C63E4B /* MedicalVisit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalVisit.swift; sourceTree = "<group>"; };
+		D24025362AF452E500C63E4B /* MedicalExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalExam.swift; sourceTree = "<group>"; };
+		D24025382AF452F900C63E4B /* Vaccination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccination.swift; sourceTree = "<group>"; };
+		D240253A2AF4531900C63E4B /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		D240253C2AF4533000C63E4B /* MedicalNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalNote.swift; sourceTree = "<group>"; };
+		D24025402AF65B3D00C63E4B /* UserProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +131,11 @@
 			children = (
 				D240251A2AF266D700C63E4B /* UserDTO.swift */,
 				D240252E2AF2B97100C63E4B /* AuthDataResultModel.swift */,
+				D24025342AF452B200C63E4B /* MedicalVisit.swift */,
+				D24025362AF452E500C63E4B /* MedicalExam.swift */,
+				D24025382AF452F900C63E4B /* Vaccination.swift */,
+				D240253A2AF4531900C63E4B /* Appointment.swift */,
+				D240253C2AF4533000C63E4B /* MedicalNote.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				D24025272AF2B73C00C63E4B /* UserProfileView.swift */,
+				D24025402AF65B3D00C63E4B /* UserProfileEditView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -254,11 +272,17 @@
 				D240252F2AF2B97100C63E4B /* AuthDataResultModel.swift in Sources */,
 				D24025202AF268E600C63E4B /* HomeViewModel.swift in Sources */,
 				D24025172AF266B300C63E4B /* LoginView.swift in Sources */,
+				D24025392AF452F900C63E4B /* Vaccination.swift in Sources */,
 				D240252A2AF2B75600C63E4B /* UserProfileViewModel.swift in Sources */,
 				D24025282AF2B73C00C63E4B /* UserProfileView.swift in Sources */,
+				D240253B2AF4531900C63E4B /* Appointment.swift in Sources */,
 				D240251D2AF268A100C63E4B /* HomeScreenButton.swift in Sources */,
 				D24025222AF2694700C63E4B /* TestView.swift in Sources */,
+				D240253D2AF4533000C63E4B /* MedicalNote.swift in Sources */,
+				D24025352AF452B200C63E4B /* MedicalVisit.swift in Sources */,
+				D24025372AF452E500C63E4B /* MedicalExam.swift in Sources */,
 				D240252D2AF2B94A00C63E4B /* AuthenticationManager.swift in Sources */,
+				D24025412AF65B3D00C63E4B /* UserProfileEditView.swift in Sources */,
 				D24024FC2AF256F200C63E4B /* HealthRecordBookApp.swift in Sources */,
 				D24025192AF266BD00C63E4B /* RegistrationView.swift in Sources */,
 			);

@@ -9,31 +9,70 @@ import SwiftUI
 
 struct UserProfileView: View {
     @StateObject var viewModel = UserProfileViewModel()
+    @State private var isEditViewPresented = false
+
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        formatter.locale = Locale(identifier: "pl_PL")
+        return formatter
+    }()
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 20) {
                 if let user = viewModel.user {
-                    Text("User id: \(user.userId)")
-                        .font(.system(size: 26, weight: .semibold))
-                        .padding(.horizontal, 40);
-                    
-                    if let dateCreated = user.dateCreated {
-                        Text("Data utworzenia: \(dateCreated)")
-                            .font(.title2)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 5)
-                    }
-                }
-//                Text("Opis: \(training.description)")
-//                    .font(.title2)
-//                    .padding(.horizontal, 40)
-//                    .padding(.vertical, 5)
+                    GroupBox(label: Label("Informacje osobiste", systemImage: "person.fill")) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Imię: \(user.firstName)")
+                            Text("Nazwisko: \(user.lastName)")
+                            Text("Data urodzenia: \(dateFormatter.string(from: user.dateOfBirth))")
+                            Text("Wzrost: \(user.height, specifier: "%.2f") cm")
+                            Text("Waga: \(user.weight, specifier: "%.2f") kg")
+                            Text("Grupa krwi: \(user.bloodType)")
 
-                Spacer()
+                            if let allergies = user.allergies, !allergies.isEmpty {
+                                Text("Alergie: \(allergies.joined(separator: ", "))")
+                            }
+
+                            if let diseases = user.chronicDiseases, !diseases.isEmpty {
+                                Text("Choroby przewlekłe: \(diseases.joined(separator: ", "))")
+                            }
+                        }
+                        .padding(4)
+                    }
+                    .groupBoxStyle(DefaultGroupBoxStyle())
+                    .padding()
+
+                    Button("Edycja danych") {
+                        isEditViewPresented = true
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    // Dodanie nawigacji do widoku edycji
+                    .sheet(isPresented: $isEditViewPresented) {
+                        UserEditView(userId: user.id)
+                    }
+                } else {
+                    Text("Ładowanie informacji o użytkowniku...")
+                        .foregroundColor(.gray)
+                }
             }
         }
-        .task {try? await viewModel.loadCurrentUser()}
+        .navigationTitle("Profil")
+        .navigationBarTitleDisplayMode(.inline)
+        .task {
+            do {
+                try await viewModel.loadCurrentUser()
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
@@ -42,3 +81,4 @@ struct UserProfileView_Previews: PreviewProvider {
         UserProfileView()
     }
 }
+

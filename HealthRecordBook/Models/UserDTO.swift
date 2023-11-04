@@ -8,6 +8,13 @@
 import Foundation
 
 struct UserDTO {
-    let userId: String
-    let dateCreated: Date?
+    var id: String
+    var firstName: String
+    var lastName: String
+    var dateOfBirth: Date
+    var height: Double
+    var weight: Double
+    var bloodType: String
+    var allergies: [String]?
+    var chronicDiseases: [String]?
 }
