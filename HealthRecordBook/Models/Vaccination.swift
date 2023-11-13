@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Vaccination {
+struct Vaccination: Codable, Identifiable {
     var id: String
     var patientID: String
     var date: Date

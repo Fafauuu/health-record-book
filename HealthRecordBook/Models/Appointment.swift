@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct Appointment {
+struct Appointment: Codable, Identifiable {
     var id: String
     var patientID: String
     var date: Date
     var type: String
     var location: String
+    var specialist: String
 }

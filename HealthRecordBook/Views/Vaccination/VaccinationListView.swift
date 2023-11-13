@@ -5,20 +5,21 @@
 //  Created by Rafał Kwiecień on 04/11/2023.
 //
 
+
 import SwiftUI
 
-struct MedicalExamListView: View {
-    @StateObject private var viewModel = MedicalExamViewModel()
+struct VaccinationListView: View {
+    @StateObject private var viewModel = VaccinationViewModel()
     @State private var isAddViewPresented = false
 
     var body: some View {
         NavigationView {
-            List(viewModel.medicalExams) { exam in
-                NavigationLink(destination: MedicalExamDetailView(exam: exam)) {
-                    MedicalExamTileView(exam: exam)
+            List(viewModel.vaccinations) { vaccination in
+                NavigationLink(destination: VaccinationDetailView(vaccination: vaccination)) {
+                    VaccinationTileView(vaccination: vaccination)
                 }
             }
-            .navigationTitle("Wyniki Badań")
+            .navigationTitle("Szczepienia")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -29,13 +30,13 @@ struct MedicalExamListView: View {
                 }
             }
             .sheet(isPresented: $isAddViewPresented, onDismiss: loadData) {
-                if let patientID = SessionManager.shared.userId {
-                    MedicalExamAddView(patientID: patientID)
+                if let patientID = SessionManager.shared.getUserId() {
+                    VaccinationAddView(patientID: patientID)
                 }
             }
             .onAppear {
                 Task {
-                    await viewModel.fetchMedicalExams()
+                    await viewModel.fetchVaccinations()
                 }
             }
         }
@@ -43,16 +44,7 @@ struct MedicalExamListView: View {
     
     private func loadData() {
         Task {
-            do {
-                await viewModel.fetchMedicalExams()
-            }
+            await viewModel.fetchVaccinations()
         }
     }
 }
-
-struct MedicalExamListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MedicalExamListView()
-    }
-}
-
