@@ -10,19 +10,19 @@ import SwiftUI
 struct AppointmentListView: View {
     @StateObject private var viewModel = AppointmentViewModel()
     @State private var isAddViewPresented = false
-    var isHistoryView: Bool = false // Dodano flagę
+    var isHistoryView: Bool = false
 
     var body: some View {
         NavigationView {
             List(viewModel.appointments) { appointment in
-                NavigationLink(destination: AppointmentDetailView(appointment: appointment)) {
+                NavigationLink(destination: AppointmentDetailView(appointment: appointment, isHistoryView: isHistoryView)) {
                     AppointmentTileView(appointment: appointment)
                 }
             }
-            .navigationTitle(isHistoryView ? "Historia wizyt" : "Terminarz") // Tytuł zmienia się w zależności od flagi
+            .navigationTitle(isHistoryView ? "Historia wizyt" : "Terminarz")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if !isHistoryView { // Pokaż przycisk tylko, gdy nie jesteśmy w widoku historii
+                    if !isHistoryView {
                         Button(action: {
                             isAddViewPresented = true
                         }) {
@@ -31,7 +31,7 @@ struct AppointmentListView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isAddViewPresented) {
+            .sheet(isPresented: $isAddViewPresented, onDismiss: loadData) {
                 if let patientID = SessionManager.shared.getUserId() {
                     AppointmentAddView(patientID: patientID)
                 }
@@ -41,6 +41,12 @@ struct AppointmentListView: View {
                     await (isHistoryView ? viewModel.fetchPastAppointments() : viewModel.fetchAppointments())
                 }
             }
+        }
+    }
+    
+    private func loadData() {
+        Task {
+            await viewModel.fetchAppointments()
         }
     }
 }

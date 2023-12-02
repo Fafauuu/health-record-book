@@ -42,6 +42,17 @@ final class AppointmentService {
         return appointments
     }
     
+    func getAppointment(appointmentId: String) async throws -> Appointment {
+        let db = Firestore.firestore()
+        let documentSnapshot = try await db.collection(collection).document(appointmentId).getDocument()
+
+        guard let appointment = try? documentSnapshot.data(as: Appointment.self) else {
+            throw NSError(domain: "AppointmentService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Nie znaleziono wizyty o podanym identyfikatorze."])
+        }
+
+        return appointment
+    }
+    
     func getPastAppointments(for patientID: String) async throws -> [Appointment] {
         print("fetching past appointments")
         let db = Firestore.firestore()

@@ -19,7 +19,7 @@ struct HomeScreenButton<Destination: View>: View {
             if homeViewModel.isLogged {
                 NavigationLink(destination: self.destination) {
                     Text(self.text)
-                        .frame(width: 120, height: 100)
+                        .frame(width: 100, height: 90)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
@@ -30,7 +30,7 @@ struct HomeScreenButton<Destination: View>: View {
                     self.showLoginView = true
                 }) {
                     Text(self.text)
-                        .frame(width: 120, height: 100)
+                        .frame(width: 100, height: 90)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

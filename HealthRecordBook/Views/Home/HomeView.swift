@@ -17,25 +17,32 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    Image("logo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
-                        .padding()
                     
                     let columns = [
                         GridItem(.flexible(), spacing: 20),
                         GridItem(.flexible(), spacing: 20)
                     ]
                     
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 15) {
+                        // First row
                         HomeScreenButton(destination: ExaminationListView(), text: "Wyniki badań", showLoginView: $showLoginView, homeViewModel: homeViewModel)
-                        HomeScreenButton(destination: VaccinationListView(), text: "Szczepienia", showLoginView: $showLoginView, homeViewModel: homeViewModel)
-                        HomeScreenButton(destination: AppointmentListView(isHistoryView: true), text: "Historia wizyt", showLoginView: $showLoginView, homeViewModel: homeViewModel)
-                        HomeScreenButton(destination: AppointmentListView(), text: "Terminarz", showLoginView: $showLoginView, homeViewModel: homeViewModel)
-                        HomeScreenButton(destination: UserProfileView(), text: "Mój profil", showLoginView: $showLoginView, homeViewModel: homeViewModel)
-                        HomeScreenButton(destination: TestView(), text: "Notatki", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        Spacer()
                         
+                        // Second row
+                        Spacer()
+                        HomeScreenButton(destination: VaccinationListView(), text: "Szczepienia", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        
+                        // Third row
+                        HomeScreenButton(destination: AppointmentListView(isHistoryView: true), text: "Historia wizyt", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        Spacer()
+                        
+                        // Fourth row
+                        Spacer()
+                        HomeScreenButton(destination: AppointmentListView(), text: "Terminarz", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        
+                        // Fifth row
+                        HomeScreenButton(destination: UserProfileView(), text: "Mój profil", showLoginView: $showLoginView, homeViewModel: homeViewModel)
+                        Spacer()
                     }
                     .padding(40)
                 }

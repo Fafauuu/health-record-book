@@ -53,6 +53,7 @@
 		D24025702B02A52A00C63E4B /* AppointmentTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240256F2B02A52A00C63E4B /* AppointmentTileView.swift */; };
 		D24025722B02A59200C63E4B /* AppointmentAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025712B02A59200C63E4B /* AppointmentAddView.swift */; };
 		D24025742B02A5AC00C63E4B /* AppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24025732B02A5AC00C63E4B /* AppointmentDetailView.swift */; };
+		D2BB60A82B1B744300856DE5 /* AppointmentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BB60A72B1B744300856DE5 /* AppointmentEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		D240256F2B02A52A00C63E4B /* AppointmentTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTileView.swift; sourceTree = "<group>"; };
 		D24025712B02A59200C63E4B /* AppointmentAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentAddView.swift; sourceTree = "<group>"; };
 		D24025732B02A5AC00C63E4B /* AppointmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailView.swift; sourceTree = "<group>"; };
+		D2BB60A72B1B744300856DE5 /* AppointmentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +284,7 @@
 				D240256F2B02A52A00C63E4B /* AppointmentTileView.swift */,
 				D24025712B02A59200C63E4B /* AppointmentAddView.swift */,
 				D24025732B02A5AC00C63E4B /* AppointmentDetailView.swift */,
+				D2BB60A72B1B744300856DE5 /* AppointmentEditView.swift */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				D24025662B02A14D00C63E4B /* VaccinationAddView.swift in Sources */,
 				D24024FE2AF256F200C63E4B /* ContentView.swift in Sources */,
 				D24025612B0292C400C63E4B /* Examination.swift in Sources */,
+				D2BB60A82B1B744300856DE5 /* AppointmentEditView.swift in Sources */,
 				D24025312AF2C01100C63E4B /* UserService.swift in Sources */,
 				D240251B2AF266D700C63E4B /* UserDTO.swift in Sources */,
 				D240252F2AF2B97100C63E4B /* AuthDataResultModel.swift in Sources */,
