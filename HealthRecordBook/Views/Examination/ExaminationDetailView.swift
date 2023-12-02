@@ -19,21 +19,65 @@ struct ExaminationDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                Group {
-                    Text("Nazwa wizyty: \(examination.name)")
-                    Text("Data: \(examination.date, formatter: dateFormatter)")
-                    Text("Specjalista: \(examination.specialist)")
-                    Text("Diagnoza: \(examination.diagnosis)")
-                    Text("Rekomendacje: \(examination.recommendations)")
-                }.font(.title2)
-                
+            VStack(alignment: .leading, spacing: 15) {
+                GroupBox(label: Text("Nazwa wizyty").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(examination.name)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                GroupBox(label: Text("Data").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(examination.date, formatter: dateFormatter)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                GroupBox(label: Text("Specjalista").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(examination.specialist)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                GroupBox(label: Text("Diagnoza").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(examination.diagnosis)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                GroupBox(label: Text("Rekomendacje").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(examination.recommendations)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
                 if let prescriptions = examination.prescriptions {
-                    Text("Przypisane lekarstwa: \(prescriptions)")
+                    GroupBox(label: Text("Przypisane lekarstwa").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(prescriptions)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 
                 if let doctorNotes = examination.doctorNotes {
-                    Text("Notatki lekarza: \(doctorNotes)")
+                    GroupBox(label: Text("Notatki lekarza").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(doctorNotes)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
             }
             .padding()
@@ -41,6 +85,9 @@ struct ExaminationDetailView: View {
         .navigationTitle("Szczegóły")
     }
 }
+
+
+
 
 struct ExaminationDetailView_Previews: PreviewProvider {
     static var previews: some View {

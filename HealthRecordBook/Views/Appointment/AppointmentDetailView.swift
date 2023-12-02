@@ -11,7 +11,7 @@ struct AppointmentDetailView: View {
     let appointment: Appointment
     var isHistoryView: Bool
     @State private var isEditViewPresented = false
-    @Environment(\.presentationMode) var presentationMode // For dismissing the view
+    @Environment(\.presentationMode) var presentationMode
 
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -23,13 +23,38 @@ struct AppointmentDetailView: View {
     var body: some View {
         VStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    Group {
-                        Text("Typ wizyty: \(appointment.type)")
-                        Text("Data: \(appointment.date, formatter: dateFormatter)")
-                        Text("Miejsce: \(appointment.location)")
-                        Text("Lekarz: \(appointment.specialist)")
-                    }.font(.title2)
+                VStack(alignment: .leading, spacing: 15) {
+                    GroupBox(label: Text("Typ wizyty").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(appointment.type)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
+                    GroupBox(label: Text("Data").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(appointment.date, formatter: dateFormatter)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
+                    GroupBox(label: Text("Miejsce").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(appointment.location)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
+                    GroupBox(label: Text("Lekarz").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(appointment.specialist)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 .padding()
             }
@@ -76,4 +101,3 @@ struct AppointmentDetailView: View {
         }
     }
 }
-

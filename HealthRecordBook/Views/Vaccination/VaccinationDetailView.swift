@@ -19,14 +19,31 @@ struct VaccinationDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                Group {
-                    Text("Typ szczepienia: \(vaccination.type)")
-                    Text("Data: \(vaccination.date, formatter: dateFormatter)")
-                }.font(.title2)
-                
+            VStack(alignment: .leading, spacing: 15) {
+                GroupBox(label: Text("Typ szczepienia").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(vaccination.type)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                GroupBox(label: Text("Data").fontWeight(.bold)) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(vaccination.date, formatter: dateFormatter)
+                            .font(.body)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
                 if let sideEffects = vaccination.sideEffects {
-                    Text("Skutki uboczne: \(sideEffects)")
+                    GroupBox(label: Text("Skutki uboczne").fontWeight(.bold)) {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text(sideEffects)
+                                .font(.body)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
             }
             .padding()
@@ -34,3 +51,4 @@ struct VaccinationDetailView: View {
         .navigationTitle("Szczegóły Szczepienia")
     }
 }
+
